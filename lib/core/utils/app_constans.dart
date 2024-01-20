@@ -1,6 +1,6 @@
 class AppConstants {
-  static const String APP_NAME = "BROKR";
-  static const String APP_VERSION = '1.0';
+  static const String APP_NAME = "brokr_prueba";
+  static const String APP_VERSION = '1.0.0+1';
   static const String BASE_URL = 'https://staging.brokr.com/api/';
 
   static const String LOGIN_WITH_SOCIAL = 'auth/login_with_social';

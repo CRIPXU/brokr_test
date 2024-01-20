@@ -11,11 +11,11 @@ class Dimensions {
   static const double PADDING_SIZE_EXTRA_SMALL = 5.0;
   static const double PADDING_SIZE_SMALL = 10.0;
   static const double PADDING_SIZE_DEFAULT = 15.0;
-  static const double HOME_PAGE_PADDING = 16.0;
+  static const double HOME_PAGE_PADDING = 17.0;
   static const double PADDING_SIZE_DEFAULT_ADDRESS = 17.0;
   static const double PADDING_SIZE_LARGE = 20.0;
   static const double PADDING_SIZE_EXTRA_LARGE = 25.0;
-  static const double PADDING_SIZE_Thirty_Five = 35.0;
+  static const double PADDING_SIZE_THIRTY_Five = 35.0;
   static const double PADDING_SIZE_OVER_LARGE = 50.0;
 
   static const double MARGIN_SIZE_EXTRA_SMALL = 5.0;

@@ -8,8 +8,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+    statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark, // Íconos y texto oscuros
-    statusBarBrightness: Brightness.dark, // Barra de estado oscura
   ));
   runApp(const MyApp());
 }
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           onSecondary: Colors.white,
           error: Colors.white,
           onError: Colors.white,
-          background: Colors.grey,
+          background: Colors.white,
           surface: Colors.grey,
           onSurface: Colors.grey,
         ),

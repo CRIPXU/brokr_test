@@ -1,4 +1,6 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
+import 'package:brokr_prueba/presentation/routes/app_pages.dart';
+import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/custom_button_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/icon_text_button-widget.dart';
 import 'package:brokr_prueba/presentation/widgets/input_widget.dart';
@@ -44,7 +46,9 @@ class _LoginPageState extends State<LoginPage> {
                     guy: 'Email',
                   ),
                   CustomButtonWidget(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     emailController: _emailController,
                     isLoading: RxBool(false),
                     name: 'Continue',
@@ -61,9 +65,9 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_LARGE),
-                  IconTextButton(
+                  IconTextButtonWidget(
                   onPressed: () {
-
+                    Get.toNamed(AppRoutes.ACCOUNT_ALREADY_EXITS);
                   },
                       text: 'Continue with Google',),
                 ],

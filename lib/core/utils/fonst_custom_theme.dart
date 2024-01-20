@@ -23,7 +23,7 @@ final letterSemiBold = GoogleFonts.inter(
 
 final letterBold = GoogleFonts.inter(
   fontWeight: FontWeight.w700,
-  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+  fontSize: Dimensions.HOME_PAGE_PADDING,
 );
 
 final letter = GoogleFonts.inter(

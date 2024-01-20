@@ -5,12 +5,11 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
 
-Widget IconTextButtonWidget({
+Widget TextButtonWidget({
   required void Function()? onPressed,
   required String text,
   Color colorButton = Colors.black,
   Color colorText = Colors.black,
-  String svg = Images.GOOGLE_ICON,
 }) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
@@ -32,13 +31,6 @@ Widget IconTextButtonWidget({
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.max,
         children: [
-          SvgPicture.asset(
-            svg,
-            height: Dimensions.ICON_SIZE_DEFAULT,
-            //alignment: AlignmentGeometry.lerp(
-            //    FractionalOffset.bottomRight, FractionalOffset.bottomRight, 50)!,
-
-          ),
           const SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
           Text(text, style: letterBlack),
         ],
