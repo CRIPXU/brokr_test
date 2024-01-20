@@ -21,10 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   //  appBar: AppBar(
-   //   // systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-
-   //  ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_LARGE),
                   IconTextButton(
                   onPressed: () {
+
                   },
                       text: 'Continue with Google',),
                 ],

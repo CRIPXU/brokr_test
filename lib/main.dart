@@ -1,4 +1,6 @@
 import 'package:brokr_prueba/presentation/page/splash_page.dart';
+import 'package:brokr_prueba/presentation/routes/app_pages.dart';
+import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
           onSurface: Colors.grey,
         ),
       ),
-      home: SplashPage(),
+      initialRoute: AppRoutes.SPLASH,
+      getPages: AppPage.pages,
     );
   }
 }
