@@ -1,4 +1,5 @@
 
+import 'package:brokr_prueba/presentation/widgets/country_region_selector_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/input_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,7 @@ class RegisterPage extends StatelessWidget {
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _lasNameController = TextEditingController();
+  TextEditingController _countryRegionController = TextEditingController();
   TextEditingController _brithDayController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
@@ -20,6 +22,7 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String country = '+1';
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -51,6 +54,12 @@ class RegisterPage extends StatelessWidget {
                     obscureText: false,
                     keyboardType: TextInputType.name,
                     labelText: 'Last name',
+                  ),
+                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                  CountryRegionSelectorTextFieldWidget(
+                      controller: _brithDayController,
+                    hintText: '+1',
+                    labelText: 'Country/Region',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   const Divider(thickness: 1),

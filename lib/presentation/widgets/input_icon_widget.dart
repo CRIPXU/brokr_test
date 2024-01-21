@@ -34,7 +34,6 @@ class InputIconWidget extends StatelessWidget {
         decoration: InputDecoration(
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(10))),
-            hintText: hintText,
             focusColor: Colors.grey,
             hoverColor: Colors.grey,
             suffix: const Icon(EvilIcons.close,color: Colors.red),

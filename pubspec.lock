@@ -43,6 +43,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
+  country_icons:
+    dependency: "direct main"
+    description:
+      name: country_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  country_picker:
+    dependency: "direct main"
+    description:
+      name: country_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.19"
   crypto:
     dependency: transitive
     description:
@@ -136,7 +150,7 @@ packages:
     source: hosted
     version: "2.3.3"
   http:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: http
       url: "https://pub.dartlang.org"

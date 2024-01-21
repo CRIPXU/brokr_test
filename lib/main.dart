@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:brokr_prueba/presentation/page/splash_page.dart';
 import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
@@ -5,6 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
+
+ class PostHttpOverrides extends HttpOverrides {
+   @override
+   HttpClient createHttpClient(context) {
+     return super.createHttpClient(context)
+       ..badCertificateCallback =
+           (X509Certificate cert, String host, int port) => true;
+   }
+ }
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
