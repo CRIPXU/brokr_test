@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
+import 'package:evil_icons_flutter/evil_icons_flutter.dart';
 
-
-class InputWidget extends StatelessWidget {
-  InputWidget({
+class InputIconWidget extends StatelessWidget {
+  InputIconWidget({
     super.key,
     required this.hintText,
     required this.controller,
     required this.obscureText,
     required this.keyboardType,
-    required this.guy,
+    required this.labelText,
   });
 
   final String hintText;
   final TextEditingController controller;
   final bool obscureText;
   final TextInputType keyboardType;
-  final String guy;
+  final String labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +37,7 @@ class InputWidget extends StatelessWidget {
             hintText: hintText,
             focusColor: Colors.grey,
             hoverColor: Colors.grey,
+            suffix: const Icon(EvilIcons.close,color: Colors.red),
             helperMaxLines: 45,
             suffixStyle: titleRegular,
             errorMaxLines: 45,
@@ -44,7 +45,7 @@ class InputWidget extends StatelessWidget {
             hintMaxLines: 1,
             //alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            labelText: guy,
+            labelText: labelText,
             labelStyle: letter,
             contentPadding: const EdgeInsets.symmetric(horizontal: 22)),
       ),

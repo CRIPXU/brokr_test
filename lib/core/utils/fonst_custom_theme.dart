@@ -16,6 +16,11 @@ final titleHeader = GoogleFonts.inter(
   fontSize: Dimensions.FONT_SIZE_LARGE,
 );
 
+final titleOver = GoogleFonts.inter(
+  fontWeight: FontWeight.w600,
+  fontSize: Dimensions.FONT_SIZE_OVER_LARGE,
+);
+
 final letterSemiBold = GoogleFonts.inter(
   fontWeight: FontWeight.w600,
   fontSize: Dimensions.FONT_SIZE_SMALL,

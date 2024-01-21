@@ -3,7 +3,7 @@ import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/custom_button_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/icon_text_button-widget.dart';
-import 'package:brokr_prueba/presentation/widgets/input_widget.dart';
+import 'package:brokr_prueba/presentation/widgets/input_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -38,12 +38,12 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   const Divider(thickness: 1),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
-                  InputWidget(
+                  InputIconWidget(
                     hintText: 'use@brokr.com',
                     controller: _emailController,
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
-                    guy: 'Email',
+                    labelText: 'Email',
                   ),
                   CustomButtonWidget(
                     onPressed: () {
