@@ -47,6 +47,7 @@ dependencies:
   country_picker: ^2.0.19
   country_icons: ^2.0.2
   http: ^0.13.5
+  flutter_datetime_picker_plus: ^2.0.0
 
 dev_dependencies:
   flutter_test:

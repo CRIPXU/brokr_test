@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:brokr_prueba/presentation/page/splash_page.dart';
 import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';

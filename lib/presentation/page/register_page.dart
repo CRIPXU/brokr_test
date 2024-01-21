@@ -1,5 +1,6 @@
 
 import 'package:brokr_prueba/presentation/widgets/country_region_selector_widget.dart';
+import 'package:brokr_prueba/presentation/widgets/date_input_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/input_icon_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -56,8 +57,14 @@ class RegisterPage extends StatelessWidget {
                     labelText: 'Last name',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  CountryRegionSelectorTextFieldWidget(
+                  DateInputWidget(
                       controller: _brithDayController,
+                      hintText: 'mm/dd/yyyy',
+                      labelText: 'Birthday',
+                  ),
+                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                  CountryRegionSelectorTextFieldWidget(
+                      controller: _countryRegionController,
                     hintText: '+1',
                     labelText: 'Country/Region',
                   ),
@@ -95,7 +102,7 @@ class RegisterPage extends StatelessWidget {
                     keyboardType: TextInputType.visiblePassword,
                     labelText: 'Repeat Password',
                   ),
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_AUTH),
+                  const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -126,8 +133,6 @@ class RegisterPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   TextColorButtonWidget(
                     colorButton: const Color(0xFF675DFE),
