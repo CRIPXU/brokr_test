@@ -71,7 +71,9 @@ flutter:
   assets:
     - assets/
     - assets/images/Congratulations.png
+    - assets/images/empty_verified.png
     - assets/images/logo_splash.png
+    - assets/images/user.png
     - assets/images/user_profile_avatar.png
     - assets/svg/google_icon.svg
   #   - images/a_dot_ham.jpeg
