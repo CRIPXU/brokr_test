@@ -23,20 +23,21 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+            Column(
+              children: [
+                const SizedBox(height: Dimensions.MARGIN_SIZE_AUTH),
+                Text('Log in or sing up', style: letterBold),
+                const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                const Divider(thickness: 1),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
-                children: [
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  Text('Log in or sing up', style: letterBold),
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  const Divider(thickness: 1),
+                children: <Widget>[
                   const SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
                   InputIconWidget(
                     hintText: 'use@brokr.com',

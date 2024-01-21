@@ -10,14 +10,14 @@ class InputWidget extends StatelessWidget {
     required this.controller,
     required this.obscureText,
     required this.keyboardType,
-    required this.guy,
+    required this.labelText,
   });
 
   final String hintText;
   final TextEditingController controller;
   final bool obscureText;
   final TextInputType keyboardType;
-  final String guy;
+  final String labelText;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class InputWidget extends StatelessWidget {
             hintMaxLines: 1,
             //alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            labelText: guy,
+            labelText: labelText,
             labelStyle: letter,
             contentPadding: const EdgeInsets.symmetric(horizontal: 22)),
       ),

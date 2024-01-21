@@ -13,7 +13,7 @@ Widget TextColorButtonWidget({
   Color colorText = Colors.black,
 }) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+    padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 8.0),
     child: ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: colorButton,

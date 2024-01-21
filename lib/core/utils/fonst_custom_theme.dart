@@ -46,16 +46,21 @@ final letterBlack = GoogleFonts.inter(
   color: Colors.black,
 );
 
+final letterBlackBold = GoogleFonts.inter(
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+);
+
 final letterItalic = GoogleFonts.inter(
   fontSize: Dimensions.FONT_SIZE_DEFAULT,
   fontStyle: FontStyle.italic,
 );
 
 final robotoRegular = GoogleFonts.inter(
-  fontWeight: FontWeight.w500,
-  fontSize: Dimensions.FONT_SIZE_DEFAULT,
-  color: Colors.grey
-);
+    fontWeight: FontWeight.w500,
+    fontSize: Dimensions.FONT_SIZE_DEFAULT,
+    color: Colors.grey);
 
 final robotoBold = GoogleFonts.inter(
   fontWeight: FontWeight.w700,

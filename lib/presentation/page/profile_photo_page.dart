@@ -12,20 +12,21 @@ class ProfilePhotoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
+            Column(
+              children: <Widget>[
+                const SizedBox(height: Dimensions.MARGIN_SIZE_AUTH),
+                Text('Profile photo', style: letterBold),
+                const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                const Divider(thickness: 1),
+              ],
+            ),
             Padding(
               padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
               child: Column(
                 children: <Widget>[
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  Text('Profile photo', style: letterBold),
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  const Divider(thickness: 1),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
                   CircularProfilePhotoWidget(),
                 ],
