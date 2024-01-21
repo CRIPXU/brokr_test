@@ -1,4 +1,5 @@
 import 'package:brokr_prueba/core/utils/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -38,12 +39,13 @@ class CircularProfilePhotoWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                     SvgPicture.asset(Images.CAMARA_FLAT),
+                      SvgPicture.asset(Images.CAMARA_FLAT),
                       const SizedBox(width: 8),
-                      Text('Upload', style: GoogleFonts.inter(
-                        color: const Color(0xFF505050),
-                        fontWeight: FontWeight.w500,
-                      )),
+                      Text('Upload',
+                          style: GoogleFonts.inter(
+                            color: const Color(0xFF505050),
+                            fontWeight: FontWeight.w500,
+                          )),
                     ],
                   ),
                 ),
@@ -54,37 +56,55 @@ class CircularProfilePhotoWidget extends StatelessWidget {
       ),
     );
   }
-
   void _showOptionsDialog(BuildContext context) {
-    showDialog(
+    showCupertinoModalPopup(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Options'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  // Handle Take Photo
-                  Navigator.pop(context);
-                },
-                child: const Text('Take Photo'),
-              ),
-              ElevatedButton(
+        return CupertinoFullscreenDialogTransition(
+          primaryRouteAnimation: const AlwaysStoppedAnimation(1),
+          secondaryRouteAnimation: const AlwaysStoppedAnimation(0.001),
+          linearTransition: true,
+          child: CupertinoActionSheet(
+            actions: [
+              CupertinoActionSheetAction(
                 onPressed: () {
                   // Handle Choose from Photo Library
                   Navigator.pop(context);
                 },
-                child: const Text('Choose from Photo Library'),
+                child: Text(
+                  'Choose from Photo Library',
+                  style: GoogleFonts.inter(
+                      color: const Color(0xFF007AFF),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15),
+                ),
               ),
-              TextButton(
+              CupertinoActionSheetAction(
                 onPressed: () {
+                  // Handle Take Photo
                   Navigator.pop(context);
                 },
-                child: const Text('Cancel'),
+                child: Text(
+                  'Take Photo',
+                  style: GoogleFonts.inter(
+                      color: const Color(0xFF007AFF),
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15),
+                ),
               ),
             ],
+            cancelButton: CupertinoActionSheetAction(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Cancel',
+                style: GoogleFonts.inter(
+                    color: const Color(0xFFFF3B30),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 15),
+              ),
+            ),
           ),
         );
       },

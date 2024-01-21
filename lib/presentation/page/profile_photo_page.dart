@@ -29,6 +29,7 @@ class ProfilePhotoPage extends StatelessWidget {
                 ],
               ),
             ),
+            const Divider(thickness: 1),
           ],
         ),
       ),
