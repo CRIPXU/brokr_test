@@ -11,6 +11,12 @@ final titleRegular = GoogleFonts.inter(
   fontSize: Dimensions.FONT_SIZE_DEFAULT,
 );
 
+final titleRegularBlue = GoogleFonts.inter(
+  color: const Color(0xFF007AFF),
+  fontWeight: FontWeight.w500,
+  fontSize: Dimensions.FONT_SIZE_DEFAULT,
+);
+
 final titleHeader = GoogleFonts.inter(
   fontWeight: FontWeight.w600,
   fontSize: Dimensions.FONT_SIZE_LARGE,

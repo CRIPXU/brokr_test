@@ -46,7 +46,7 @@ class AccountAlreadyExistsPage extends StatelessWidget {
                   Text('user@brokr.com', style: letterBlack),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG_SMALL),
                   IconTextButtonWidget(onPressed: () {
-                    Get.toNamed(AppRoutes.PROFILE_PHOTO);
+                    Get.toNamed(AppRoutes.REGISTER);
                   }, text: 'Continue with Google'),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
                   Stack(
