@@ -62,6 +62,14 @@ class RegisterPage extends StatelessWidget {
                     labelText: 'Country/Region',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                  InputIconWidget(
+                    hintText: '(973) 842-5678',
+                    controller: _emailController,
+                    obscureText: false,
+                    keyboardType: TextInputType.emailAddress,
+                    labelText: 'Number Phone',
+                  ),
+                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   const Divider(thickness: 1),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputIconWidget(

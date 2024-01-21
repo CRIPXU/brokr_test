@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
 import 'package:http/http.dart' as http;
-
 import '../../core/utils/fonst_custom_theme.dart';
 
 class CountryRegionSelectorTextFieldWidget extends StatefulWidget {
@@ -57,7 +56,9 @@ class _CountryRegionSelectorTextFieldWidgetState
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Select Country'),
+          titleTextStyle: letterBlackBold,
+          contentTextStyle: letterBlackBold,
+          title:  Text('Select Country', style: letterBlackBold,),
           content: SingleChildScrollView(
             child: CountryRegionSelectorWidget(controller: widget.controller),
           ),
@@ -104,7 +105,7 @@ class _CountryRegionSelectorWidgetState
                   ),
                 )
               : null,
-          title: Text(_selectedCountry?.displayName ?? 'Select Country'),
+          title: Text(_selectedCountry?.displayName ?? 'Select Country',style: titleRegular,),
           //subtitle: Text(_selectedCountry?.countryCode ?? '+1'),
           trailing: const Icon(Icons.arrow_drop_down),
         ),
