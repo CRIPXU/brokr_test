@@ -1,14 +1,10 @@
 import 'package:brokr_prueba/core/utils/images.dart';
-import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
 
 import '../../core/utils/dimensions.dart';
 import '../../core/utils/fonst_custom_theme.dart';
-import '../widgets/custom_button_widget.dart';
+import '../widgets/text_color_button_widget.dart';
 
 class CongratulationsPage extends StatelessWidget {
   const CongratulationsPage({super.key});
@@ -51,14 +47,9 @@ class CongratulationsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
-                  CustomButtonWidget(
-                    onPressed: () {
-                      Get.toNamed(AppRoutes.HOME);
-                    },
-                    emailController: _emailController,
-                    isLoading: RxBool(false),
-                    name: 'Continue',
-                  ),
+                  TextColorButtonWidget(colorButton: Color(0xFF675DFE),colorText: Colors.white,onPressed: () {
+                    Get.back();
+                  }, text: 'Continue')
                 ],
               ),
             ),

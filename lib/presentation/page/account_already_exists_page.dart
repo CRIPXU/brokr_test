@@ -2,6 +2,7 @@ import 'package:brokr_prueba/core/utils/dimensions.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/icon_text_button-widget.dart';
 import 'package:brokr_prueba/presentation/widgets/text_button_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
