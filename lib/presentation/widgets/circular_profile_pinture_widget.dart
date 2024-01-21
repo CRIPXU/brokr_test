@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-
 import '../../core/utils/dimensions.dart';
 import '../../core/utils/images.dart';
 
-class CircularProfilePhotoWidget extends StatelessWidget {
+class CircularProfilePintureWidget extends StatelessWidget {
   // final  RegisterController controller;
-  const CircularProfilePhotoWidget({
-    super.key,
-    //required this.controller,
+  const CircularProfilePintureWidget({
+    super.key, //required this.controller
   });
 
   @override
@@ -24,7 +20,6 @@ class CircularProfilePhotoWidget extends StatelessWidget {
             backgroundImage: AssetImage(Images.ICON_PERSON),
             radius: 50,
             backgroundColor: Colors.white,
-            // backgroundColor: Color(0xFFCECECE),
           ),
         ),
       ),
@@ -36,12 +31,12 @@ class CircularProfilePhotoWidget extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Titulo del dialogo'),
-          content: Text('Contenido del dialogo'),
+          title: const Text('Titulo del dialogo'),
+          content: const Text('Contenido del dialogo'),
           actions: [
             TextButton(
               onPressed: () {},
-              child: Text('cerrar'),
+              child: const Text('cerrar'),
             ),
           ],
         );

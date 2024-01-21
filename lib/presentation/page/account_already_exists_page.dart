@@ -39,14 +39,14 @@ class AccountAlreadyExistsPage extends StatelessWidget {
                           style: letter,textAlign: TextAlign.justify),
                     ),
                   ),
-                  const CircularProfilePhotoWidget(),
+                  const CircularProfilePintureWidget(),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   Text('Luis Ordoñes', style: letterBold),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   Text('user@brokr.com', style: letterBlack),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG_SMALL),
                   IconTextButtonWidget(onPressed: () {
-                    Get.toNamed(AppRoutes.CONGRATULATIONS);
+                    Get.toNamed(AppRoutes.PROFILE_PHOTO);
                   }, text: 'Continue with Google'),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
                   Stack(
