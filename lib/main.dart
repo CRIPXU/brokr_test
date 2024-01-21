@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:brokr_prueba/presentation/controllers/connectivity_controller.dart';
+import 'package:brokr_prueba/presentation/page/no_internet_page.dart';
 import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:connectivity/connectivity.dart';
@@ -16,10 +17,8 @@ void main() async {
     statusBarIconBrightness: Brightness.dark, // Íconos y texto oscuros
   ));
   await Get.putAsync(() async => ConnectivityController());
-
   runApp(const MyApp());
 }
-
 
 
 class MyApp extends StatelessWidget {
@@ -54,9 +53,7 @@ class MyApp extends StatelessWidget {
             stream: connectivityController.connectivityStream.stream,
             builder: (context, snapshot) {
               if (snapshot.data == ConnectivityResult.none) {
-                return const Center(
-                  child: Text('No hay conexión a Internet'),
-                );
+                return const NoInternetPage();
               } else {
                 return child!;
               }
