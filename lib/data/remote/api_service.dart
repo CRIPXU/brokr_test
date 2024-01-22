@@ -4,6 +4,7 @@ import 'package:brokr_prueba/core/model/language_model.dart';
 import 'package:brokr_prueba/core/utils/app_constans.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService extends GetConnect {
   Uri uriLanguages =
@@ -42,34 +43,51 @@ class ApiService extends GetConnect {
     required String fcmToken,
     required String language,
   }) async {
-    final Map<String, dynamic> requestData = {
-      'email': email,
-      'password': password,
-      'os': os,
-      'type': type,
-      'fcm_token': fcmToken,
-      'language': language,
-    };
+    try {
+      final Map<String, dynamic> requestData = {
+        'email': email,
+        'password': password,
+        'os': os,
+        'type': type,
+        'fcm_token': fcmToken,
+        'language': language,
+      };
 
-    final response = await post(
-      uriLoginUserWithSocial,
-      body: requestData,
-      headers: {
-        'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
-        'Content-Type': 'application/json',
-      },
-    );
+      final response = await post(
+        uriLoginUserWithSocial,
+        body: requestData,
+        headers: {
+          'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+          'Content-Type': 'application/json',
+        },
+      );
 
-    if (response.statusCode == 200) {
-      final dynamic responseData = jsonDecode(response.body)['data'];
+      if (response.statusCode == 200) {
+        final dynamic responseData = jsonDecode(response.body)['data'];
 
-      final Map<String, dynamic> userData = responseData['customer'];
-      final String token = responseData['token'];
+        final Map<String, dynamic> userData = responseData['customer'];
+        final String token = responseData['token'];
 
-      print('Login successful: $userData');
-      print('Token: $token');
-    }  else{
-      throw Exception('Failed to login user');
+        await saveToken(token);
+
+        print('Login successful: $userData');
+        print('Token: $token');
+      } else {
+        throw Exception('Failed to login: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error during login: $e');
+      rethrow;
     }
+  }
+
+  Future<void> saveToken(String token) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('auth_token', token);
+  }
+
+  Future<String?> getAuthToken() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
   }
 }
