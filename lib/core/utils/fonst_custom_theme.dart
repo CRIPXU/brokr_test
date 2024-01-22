@@ -60,7 +60,7 @@ final letterItalic = GoogleFonts.inter(
 final robotoRegular = GoogleFonts.inter(
     fontWeight: FontWeight.w500,
     fontSize: Dimensions.FONT_SIZE_DEFAULT,
-    color: Colors.grey);
+    color: const Color(0xFF505050));
 
 final robotoBold = GoogleFonts.inter(
   fontWeight: FontWeight.w700,

@@ -1,6 +1,5 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
 import 'package:brokr_prueba/presentation/controllers/login_controller.dart';
-import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/custom_button_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/icon_text_button-widget.dart';
@@ -47,13 +46,55 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     labelText: 'Email',
                   ),
-                  CustomButtonWidget(
-                    onPressed: () => con.login(),
-                    emailController: con.emailController,
-                    isLoading: RxBool(false),
-                    name: 'Continue',
+                  const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                  if (con.showPasswordInput.value == true)
+                    InputIconWidget(
+                      hintText: '********',
+                      controller: con.passwordController,
+                      obscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      labelText: 'Password',
+                      icon: const Icon(Icons.remove_red_eye_outlined,
+                          color: Color(0xFF5A6684)),
+                    ),
+                  Obx(
+                    () => con.showPasswordInput.value
+                        ? SizedBox()
+                        : Column(
+                          children: [
+                            CustomButtonWidget(
+                                onPressed: () {
+                                  setState(() {
+                                    con.login();
+                                  });
+                                },
+                                emailController: con.emailController,
+                                isLoading: con.showPasswordInput,
+                                name: 'Continue',
+                              ),
+                            const SizedBox(height: Dimensions.MARGIN_SIZE_BIG_LARGE),
+                          ],
+                        ),
                   ),
-                  const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
+                  if (con.showPasswordInput.value == true)
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
+                        Text('Forgot password?', style: robotoRegular, textAlign: TextAlign.end),
+                        CustomButtonWidget(
+                          onPressed: () {
+                            con.loginUser();
+                          },
+                          emailController: con.emailController,
+                          isLoading: RxBool(false),
+                          name: 'Login',
+                        ),
+                        const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
+                      ],
+                    ),
+                  //const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
                   Stack(
                     alignment: const AlignmentDirectional(
                         0, Dimensions.MARGIN_SIZE_EXTRA_SMALL),

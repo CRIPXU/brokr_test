@@ -26,7 +26,6 @@ class CustomButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () async {
           onPressed(
-            email: emailController.text,
             //password: passwordController.text,
             // device_name: deviceName,
           );

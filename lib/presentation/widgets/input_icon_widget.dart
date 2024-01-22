@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
-import 'package:evil_icons_flutter/evil_icons_flutter.dart';
+//import 'package:evil_icons_flutter/evil_icons_flutter.dart';
 
 class InputIconWidget extends StatelessWidget {
   InputIconWidget({
@@ -11,6 +11,7 @@ class InputIconWidget extends StatelessWidget {
     required this.obscureText,
     required this.keyboardType,
     required this.labelText,
+    this.icon,
   });
 
   final String hintText;
@@ -18,6 +19,7 @@ class InputIconWidget extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final String labelText;
+  final Widget? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class InputIconWidget extends StatelessWidget {
             hintText: hintText,
             focusColor: Colors.grey,
             hoverColor: Colors.grey,
-            suffix: const Icon(EvilIcons.close,color: Colors.red),
+            suffix: icon,
             helperMaxLines: 45,
             suffixStyle: titleRegular,
             errorMaxLines: 45,

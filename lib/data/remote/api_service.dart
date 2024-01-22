@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:brokr_prueba/core/model/language_model.dart';
-import 'package:brokr_prueba/core/utils/app_constans.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:http/http.dart';
 
@@ -30,4 +29,6 @@ class ApiService extends GetConnect {
       throw Exception('Failed to load languages');
     }
   }
+
+  loginUser({required String email, required String password, required String os, required String type, required String fcmToken, required String languageCode}) {}
 }
