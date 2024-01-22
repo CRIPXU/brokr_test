@@ -1,10 +1,7 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
-import 'package:brokr_prueba/core/utils/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../core/utils/fonst_custom_theme.dart';
 
 Widget TextColorButtonWidget({
   required void Function()? onPressed,

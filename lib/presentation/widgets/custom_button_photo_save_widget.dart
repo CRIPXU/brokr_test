@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
@@ -43,14 +44,11 @@ class CustomButtonPhotoSaveWidget extends StatelessWidget {
         child: Obx(() {
           return isLoading.value
               ? FittedBox(
-                child: CircularProgressIndicator(
+            child: CircularProgressIndicator(
             strokeWidth: 4.5,
             color: const Color(0xFF7772BC),
-            backgroundColor: Colors.deepPurple.shade200,
-          ),
-              ) : Text(name,
-            style: letter,
-          );
+            backgroundColor: Colors.deepPurple.shade200))
+              : Text(name, style: letter);
         }),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
 
 class DateInputWidget extends StatefulWidget {
@@ -40,13 +41,13 @@ class _DateInputWidgetState extends State<DateInputWidget> {
               ),
               hintText: widget.hintText,
               helperMaxLines: 45,
-              suffixStyle: TextStyle(fontSize: 0),
+              suffixStyle: const TextStyle(fontSize: 0),
               errorMaxLines: 45,
-              errorStyle: TextStyle(fontSize: 0),
+              errorStyle: const TextStyle(fontSize: 0),
               hintMaxLines: 1,
               floatingLabelBehavior: FloatingLabelBehavior.always,
               labelText: widget.labelText,
-              labelStyle: TextStyle(color: Colors.grey),
+              labelStyle: const TextStyle(color: Colors.grey),
               contentPadding: const EdgeInsets.symmetric(horizontal: 22),
             ),
           ),
@@ -61,7 +62,7 @@ class _DateInputWidgetState extends State<DateInputWidget> {
       showTitleActions: true,
       //minTime: DateTime(2020, 5, 5, 20, 50),
       //maxTime: DateTime(2020, 6, 7, 05, 09),
-      theme: DatePickerTheme(
+      theme: const DatePickerTheme(
         backgroundColor: Colors.white,
         headerColor: Colors.white,
       ),

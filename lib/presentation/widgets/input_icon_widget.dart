@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
-//import 'package:evil_icons_flutter/evil_icons_flutter.dart';
 
 class InputIconWidget extends StatelessWidget {
   InputIconWidget({
@@ -34,8 +34,7 @@ class InputIconWidget extends StatelessWidget {
         keyboardType: keyboardType,
         controller: controller,
         decoration: InputDecoration(
-            border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+            border: const OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
             hintText: hintText,
             focusColor: Colors.grey,
             hoverColor: Colors.grey,
@@ -45,7 +44,6 @@ class InputIconWidget extends StatelessWidget {
             errorMaxLines: 45,
             errorStyle: robotoRegular,
             hintMaxLines: 1,
-            //alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: labelText,
             labelStyle: letter,

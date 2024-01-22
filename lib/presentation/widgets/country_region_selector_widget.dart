@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import '../../core/utils/fonst_custom_theme.dart';
 
@@ -18,8 +19,7 @@ class CountryRegionSelectorTextFieldWidget extends StatefulWidget {
   });
 
   @override
-  _CountryRegionSelectorTextFieldWidgetState createState() =>
-      _CountryRegionSelectorTextFieldWidgetState();
+  _CountryRegionSelectorTextFieldWidgetState createState() => _CountryRegionSelectorTextFieldWidgetState();
 }
 
 class _CountryRegionSelectorTextFieldWidgetState
@@ -74,12 +74,10 @@ class CountryRegionSelectorWidget extends StatefulWidget {
   CountryRegionSelectorWidget({required this.controller});
 
   @override
-  _CountryRegionSelectorWidgetState createState() =>
-      _CountryRegionSelectorWidgetState();
+  _CountryRegionSelectorWidgetState createState() => _CountryRegionSelectorWidgetState();
 }
 
-class _CountryRegionSelectorWidgetState
-    extends State<CountryRegionSelectorWidget> {
+class _CountryRegionSelectorWidgetState extends State<CountryRegionSelectorWidget> {
   Country? _selectedCountry;
 
   @override
@@ -95,8 +93,7 @@ class _CountryRegionSelectorWidgetState
                   child: FutureBuilder<Uint8List?>(
                     future: _loadImage(),
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.done &&
-                          snapshot.hasData) {
+                      if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                         return Image.memory(snapshot.data!);
                       } else {
                         return Container();
@@ -131,8 +128,7 @@ class _CountryRegionSelectorWidgetState
       var client = http.Client();
       var request = http.Request(
           'GET',
-          Uri.parse(
-              'https://www.countryflags.io/${_selectedCountry!.countryCode}/flat/64.png'));
+          Uri.parse('https://www.countryflags.io/${_selectedCountry!.countryCode}/flat/64.png'));
       var response = await client.send(request);
 
       if (response.statusCode == 200) {

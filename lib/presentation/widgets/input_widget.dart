@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
 
@@ -42,7 +43,6 @@ class InputWidget extends StatelessWidget {
             errorMaxLines: 45,
             errorStyle: robotoRegular,
             hintMaxLines: 1,
-            //alignLabelWithHint: true,
             floatingLabelBehavior: FloatingLabelBehavior.always,
             labelText: labelText,
             labelStyle: letter,

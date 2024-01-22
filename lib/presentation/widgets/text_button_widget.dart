@@ -1,7 +1,6 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
-import 'package:brokr_prueba/core/utils/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../core/utils/fonst_custom_theme.dart';
 
@@ -20,9 +19,7 @@ Widget TextButtonWidget({
         padding: const EdgeInsets.all(Dimensions.PADDING_SIZE_DEFAULT),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
-          side: BorderSide(
-            color: colorButton,
-          ),
+          side: BorderSide(color: colorButton),
         ),
       ),
       onPressed: onPressed,

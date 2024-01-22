@@ -1,5 +1,6 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
 import 'package:brokr_prueba/core/utils/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -34,11 +35,7 @@ Widget IconTextButtonWidget({
         children: [
           SvgPicture.asset(
             svg,
-            height: Dimensions.ICON_SIZE_DEFAULT,
-            //alignment: AlignmentGeometry.lerp(
-            //    FractionalOffset.bottomRight, FractionalOffset.bottomRight, 50)!,
-
-          ),
+            height: Dimensions.ICON_SIZE_DEFAULT),
           const SizedBox(width: Dimensions.PADDING_SIZE_EXTRA_EXTRA_SMALL),
           Text(text, style: letterBlack),
         ],

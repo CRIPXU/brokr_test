@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:brokr_prueba/presentation/controllers/connectivity_controller.dart';
+import 'package:brokr_prueba/presentation/controllers/global_controller.dart';
 import 'package:brokr_prueba/presentation/page/no_internet_page.dart';
 import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
@@ -17,6 +18,7 @@ void main() async {
     statusBarIconBrightness: Brightness.dark, // Íconos y texto oscuros
   ));
   await Get.putAsync(() async => ConnectivityController());
+  await Get.putAsync(() async => GlobalController());
   runApp(const MyApp());
 }
 

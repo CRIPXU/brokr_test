@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
+import 'global_controller.dart';
+
 class LoginController extends GetMaterialController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final GlobalController globalController = Get.find();
   final ApiService _apiService = ApiService();
   RxList<Language> languages = <Language>[].obs;
   RxBool showPasswordInput = RxBool(false);
@@ -81,6 +84,9 @@ class LoginController extends GetMaterialController {
     print('Email: $email');
     print('Password: $password');
 
+    // Mostrar la pantalla de carga
+    globalController.isLoading.value = true;
+
     if (isValidEmailPasswordCheck(email, password))   {
       try {
         String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
@@ -108,6 +114,9 @@ class LoginController extends GetMaterialController {
         }
       } catch (e) {
         print('Error logging in: $e');
+      } finally {
+        // Ocultar la pantalla de carga
+        globalController.isLoading.value = false;
       }
     }
   }

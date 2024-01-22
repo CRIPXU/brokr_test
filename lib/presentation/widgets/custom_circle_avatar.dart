@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
@@ -44,7 +45,6 @@ class CustomCircleAvatar extends StatelessWidget {
               ],
             ),
           ),
-         // const SizedBox(width: 13),
           Padding(
             padding: const EdgeInsets.only(top: 7.0,left: 13.0,right: 20),
             child: Column(
@@ -52,8 +52,7 @@ class CustomCircleAvatar extends StatelessWidget {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Text(
-                      'Hi${userName != null ? ', $userName!' : ''}',
+                    Text('Hi${userName != null ? ', $userName!' : ''}',
                       style: GoogleFonts.inter(
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
@@ -61,8 +60,7 @@ class CustomCircleAvatar extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 5),
-                    Text(
-                      salutation,
+                    Text(salutation,
                       style: GoogleFonts.inter(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
@@ -71,8 +69,7 @@ class CustomCircleAvatar extends StatelessWidget {
                     ),
                   ],
                 ),
-                Text(
-                  'Good Morning!',
+                Text('Good Morning!',
                   style: GoogleFonts.inter(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
