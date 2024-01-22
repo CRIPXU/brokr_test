@@ -25,10 +25,7 @@ class CustomButtonWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 30),
       child: ElevatedButton(
         onPressed: () async {
-          onPressed(
-            //password: passwordController.text,
-            // device_name: deviceName,
-          );
+          onPressed();
         },
         style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),
