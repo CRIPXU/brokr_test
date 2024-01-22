@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                         Text('Forgot password?', style: robotoRegular, textAlign: TextAlign.end),
                         CustomButtonWidget(
                           onPressed: () {
-                            con.loginUser();
+                            con.loginWithSocial();
                           },
                           emailController: con.emailController,
                           isLoading: RxBool(false),

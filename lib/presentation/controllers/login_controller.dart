@@ -44,7 +44,7 @@ class LoginController extends GetMaterialController {
     }
   }
 
-  void loginUser() async {
+  void loginWithSocial() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -57,13 +57,13 @@ class LoginController extends GetMaterialController {
         String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
 
         // Enviar la solicitud al servidor
-        await _apiService.loginUser(
+        await _apiService.loginWithSocial(
           email: email,
           password: password,
           os: 'android', // Cambia según tu lógica
           type: 'mobile', // Cambia según tu lógica
           fcmToken: 'DFGKNODFIJO34U89FGKNO', // Obtén el token de FCM del dispositivo
-          languageCode: languageCode,
+          language: languageCode,
         );
 
         // Continuar con la navegación a la siguiente página
