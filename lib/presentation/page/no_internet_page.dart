@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class NoInternetPage extends StatelessWidget {
   const NoInternetPage({Key? key}) : super(key: key);
@@ -10,15 +11,9 @@ class NoInternetPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Icon(
-              Icons.signal_wifi_off,
-              size: 50,
-              color: Colors.red,
-            ),
+            Icon(Icons.signal_wifi_off, size: 50, color: Colors.red),
             SizedBox(height: 16),
-            Text(
-              'No hay conexión a Internet',
-              style: TextStyle(fontSize: 18),
+            Text('No hay conexión a Internet', style: TextStyle(fontSize: 18),
             ),
           ],
         ),

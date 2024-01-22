@@ -1,8 +1,10 @@
-
+import 'package:brokr_prueba/presentation/controllers/register_controller.dart';
 import 'package:brokr_prueba/presentation/widgets/country_region_selector_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/date_input_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/input_icon_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/utils/dimensions.dart';
 import '../../core/utils/fonst_custom_theme.dart';
@@ -11,15 +13,7 @@ import '../widgets/text_color_button_widget.dart';
 
 class RegisterPage extends StatelessWidget {
   RegisterPage({super.key});
-
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _lasNameController = TextEditingController();
-  TextEditingController _countryRegionController = TextEditingController();
-  TextEditingController _brithDayController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
-  TextEditingController _repeatPasswordController = TextEditingController();
+  RegisterController con = Get.put(RegisterController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +37,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
                   InputWidget(
                     hintText: 'Luis',
-                    controller: _nameController,
+                    controller: con.nameController,
                     obscureText: false,
                     keyboardType: TextInputType.name,
                     labelText: 'Name',
@@ -51,27 +45,27 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputWidget(
                     hintText: 'Ordoñez',
-                    controller: _lasNameController,
+                    controller: con.lasNameController,
                     obscureText: false,
                     keyboardType: TextInputType.name,
                     labelText: 'Last name',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   DateInputWidget(
-                      controller: _brithDayController,
+                      controller: con.brithDayController,
                       hintText: 'mm/dd/yyyy',
                       labelText: 'Birthday',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   CountryRegionSelectorTextFieldWidget(
-                      controller: _countryRegionController,
+                      controller: con.countryRegionController,
                     hintText: '+1',
                     labelText: 'Country/Region',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputIconWidget(
                     hintText: '(973) 842-5678',
-                    controller: _emailController,
+                    controller: con.phoneController,
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
                     labelText: 'Number Phone',
@@ -81,7 +75,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputIconWidget(
                     hintText: 'user@brokr.com',
-                    controller: _emailController,
+                    controller: con.emailController,
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
                     labelText: 'Email',
@@ -89,7 +83,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputIconWidget(
                     hintText: '********',
-                    controller: _passwordController,
+                    controller: con.passwordController,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     labelText: 'Password',
@@ -97,7 +91,7 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
                   InputIconWidget(
                     hintText: '********',
-                    controller: _repeatPasswordController,
+                    controller: con.repeatPasswordController,
                     obscureText: true,
                     keyboardType: TextInputType.visiblePassword,
                     labelText: 'Repeat Password',
@@ -139,17 +133,6 @@ class RegisterPage extends StatelessWidget {
                       colorText: const Color(0xFFFFFFFF),
                       onPressed: (){},
                       text: 'Agree and continue')
-                  // CustomDatePickerInputWidget (
-                  //   controller: _brithDayController,
-                  //   hintText: 'mm/dd/yyyy',
-                  //   labelText: 'Birthday',
-                  //   guy: 'Birthday',
-                  // ),
-                  //   DateInputWidget(
-                  //       controller: _brithDayController,
-                  //       hintText: 'mm/dd/yyyy',
-                  //       guy: 'Birthday',
-                  //   ),
                 ],
               ),
             ),

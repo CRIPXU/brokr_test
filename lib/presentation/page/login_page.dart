@@ -4,6 +4,7 @@ import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/custom_button_widget.dart';
 import 'package:brokr_prueba/presentation/widgets/icon_text_button-widget.dart';
 import 'package:brokr_prueba/presentation/widgets/input_icon_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -98,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
                       ],
                     ),
-                  //const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),
                   Stack(
                     alignment: const AlignmentDirectional(
                         0, Dimensions.MARGIN_SIZE_EXTRA_SMALL),

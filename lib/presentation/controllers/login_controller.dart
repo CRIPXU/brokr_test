@@ -68,7 +68,6 @@ class LoginController extends GetMaterialController {
   bool isValidEmailCheck(String email) {
     if (email.isEmpty) {
       Get.snackbar('Formulario no válido', 'El email no es válido');
-     // isValidEmail.value = false;
       return false;
     }
     return true;
@@ -99,7 +98,6 @@ class LoginController extends GetMaterialController {
         if (response == 'success') {
           // Inicio de sesión exitoso
           print('Token: ${_apiService.getAuthToken()}');
-         // print('Login data: ${_apiService.toString()}');
           Get.toNamed(AppRoutes.HOME);
         } else if (response == 'error' && response == 'Invalid credentials') {
           // Contraseña incorrecta
@@ -113,7 +111,6 @@ class LoginController extends GetMaterialController {
       }
     }
   }
-
 
 
   bool isValidEmailPasswordCheck(String email, String password) {

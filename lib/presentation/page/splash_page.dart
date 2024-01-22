@@ -1,12 +1,10 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:brokr_prueba/core/utils/images.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../controllers/splash_controller.dart';
 import 'login_page.dart';
 
 class SplashPage extends StatelessWidget {
-  final SplashController _splashController = Get.put(SplashController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class SplashPage extends StatelessWidget {
       //backgroundColor: Colors.transparent,
       animationDuration: const Duration(milliseconds: 3000),
       splashIconSize: double.maxFinite,
-      nextScreen: LoginPage(),
+      nextScreen: const LoginPage(),
     );
   }
 }

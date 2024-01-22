@@ -1,5 +1,6 @@
 import 'package:brokr_prueba/core/utils/images.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +13,6 @@ class CongratulationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _emailController = TextEditingController();
 
     return Scaffold(
       body: Center(
@@ -48,7 +48,7 @@ class CongratulationsPage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
-                  TextColorButtonWidget(colorButton: Color(0xFF675DFE),colorText: Colors.white,onPressed: () {
+                  TextColorButtonWidget(colorButton: const Color(0xFF675DFE),colorText: Colors.white,onPressed: () {
                     Get.toNamed(AppRoutes.HOME);
                   }, text: 'Continue')
                 ],
