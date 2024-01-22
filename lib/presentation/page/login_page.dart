@@ -1,4 +1,5 @@
 import 'package:brokr_prueba/core/utils/dimensions.dart';
+import 'package:brokr_prueba/presentation/controllers/login_controller.dart';
 import 'package:brokr_prueba/presentation/routes/app_pages.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:brokr_prueba/presentation/widgets/custom_button_widget.dart';
@@ -18,7 +19,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailController = TextEditingController();
+  LoginController con = Get.put(LoginController());
 
   @override
   Widget build(BuildContext context) {
@@ -41,36 +42,36 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: Dimensions.MARGIN_SIZE_SMALL),
                   InputIconWidget(
                     hintText: 'use@brokr.com',
-                    controller: _emailController,
+                    controller: con.emailController,
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
                     labelText: 'Email',
                   ),
                   CustomButtonWidget(
-                    onPressed: () {
-
-                    },
-                    emailController: _emailController,
+                    onPressed: () => con.login(),
+                    emailController: con.emailController,
                     isLoading: RxBool(false),
                     name: 'Continue',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_BIG),
                   Stack(
-                    alignment: const AlignmentDirectional( 0, Dimensions.MARGIN_SIZE_EXTRA_SMALL),
-                    children:  [
-                      const Divider(thickness: 1,endIndent: 200),
+                    alignment: const AlignmentDirectional(
+                        0, Dimensions.MARGIN_SIZE_EXTRA_SMALL),
+                    children: [
+                      const Divider(thickness: 1, endIndent: 200),
                       const SizedBox(width: Dimensions.MARGIN_SIZE_EXTRA_SMALL),
                       Text('Or', style: robotoRegular),
                       const SizedBox(width: Dimensions.MARGIN_SIZE_EXTRA_SMALL),
-                      const Divider(thickness: 1,indent: 200),
+                      const Divider(thickness: 1, indent: 200),
                     ],
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_LARGE),
                   IconTextButtonWidget(
-                  onPressed: () {
-                    Get.toNamed(AppRoutes.ACCOUNT_ALREADY_EXITS);
-                  },
-                      text: 'Continue with Google',),
+                    onPressed: () {
+                      Get.toNamed(AppRoutes.ACCOUNT_ALREADY_EXITS);
+                    },
+                    text: 'Continue with Google',
+                  ),
                 ],
               ),
             ),
