@@ -59,14 +59,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   Obx(
                     () => con.showPasswordInput.value
-                        ? SizedBox()
+                        ? const SizedBox()
                         : Column(
                           children: [
                             CustomButtonWidget(
-                                onPressed: () {
+                                onPressed: () async {
+                                  bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
                                   setState(() {
                                     con.login();
                                   });
+                                  if (emailExists) {
+                                    con.setShowPasswordInput(true);
+                                  }
                                 },
                                 emailController: con.emailController,
                                 isLoading: con.showPasswordInput,

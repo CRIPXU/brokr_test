@@ -13,7 +13,6 @@ class LoginController extends GetMaterialController {
   RxBool showPasswordInput = RxBool(false);
   RxBool isValidEmail = RxBool(false);
 
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -32,16 +31,44 @@ class LoginController extends GetMaterialController {
     }
   }
 
+  Future<bool> checkEmailExists(String email) async {
+    try {
+      return await _apiService.checkEmailExists(email);
+    } catch (e) {
+      print('Error checking email existence: $e');
+      return false;
+    }
+  }
+
   void setShowPasswordInput(bool value) {
     showPasswordInput.value = value;
   }
 
-  void login() {
+  void login() async {
     String email = emailController.text.trim();
 
-    if (isValidForm(email, passwordController.text.trim())) {
-      setShowPasswordInput(true);
+    if (isValidForm(email)) {
+      bool emailExists = await checkEmailExists(email);
+      print('====================>emailExists: $emailExists');
+      if (emailExists) {
+        setShowPasswordInput(true);
+      } else {
+        Get.snackbar(
+          'Correo no registrado',
+          'El correo electrónico no está registrado en el servidor',
+        );
+      }
     }
+  }
+
+
+  bool isValidForm(String email) {
+    if (email.isEmpty) {
+      Get.snackbar('Formulario no válido', 'El email no es válido');
+     // isValidEmail.value = false;
+      return false;
+    }
+    return true;
   }
 
   void loginWithSocial() async {
@@ -51,45 +78,34 @@ class LoginController extends GetMaterialController {
     print('Email: $email');
     print('Password: $password');
 
-
-    if (isValidForm(email, password)) {
+    if (isValidForm(email, )) {
       try {
-        String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
+        String languageCode =
+            languages.isNotEmpty ? languages.first.code : 'en';
 
         // Enviar la solicitud al servidor
         await _apiService.loginWithSocial(
           email: email,
           password: password,
-          os: 'android', // Cambia según tu lógica
-          type: 'mobile', // Cambia según tu lógica
-          fcmToken: 'DFGKNODFIJO34U89FGKNO', // Obtén el token de FCM del dispositivo
+          os: 'android',
+          // Cambia según tu lógica
+          type: 'mobile',
+          // Cambia según tu lógica
+          fcmToken: 'DFGKNODFIJO34U89FGKNO',
+          // Obtén el token de FCM del dispositivo
           language: languageCode,
         );
 
         // Continuar con la navegación a la siguiente página
-        Get.toNamed(AppRoutes.HOME); // Reemplaza '/next_page' con la ruta correcta
+        Get.toNamed(
+            AppRoutes.HOME); // Reemplaza '/next_page' con la ruta correcta
       } catch (e) {
         print('Error logging in: $e');
       }
     }
   }
+ //     isValidEmail.value = false;
 
-  bool isValidForm(String email, String password) {
-    if (email.isEmpty) {
-      Get.snackbar('Formulario no válido', 'El email no es válido');
-      isValidEmail.value = false;
-      return false;
-    }
-    isValidEmail.value = true;
-    return true;
-  }
 }
 
 
-bool isValidForm (String email) {
-  if (email.isEmpty) {
-    Get.snackbar('Formulario no valido', 'El email no es valido');
-    return false;
-  }
-  return true;
-}

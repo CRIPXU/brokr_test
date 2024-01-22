@@ -7,17 +7,19 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService extends GetConnect {
-  Uri uriLanguages =
-      Uri.https(AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
+  Uri uriLanguages = Uri.https(
+      AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
   Uri uriLoginUserWithSocial = Uri.https(
       AppConstants.BASE_URL, AppConstants.LOGIN_WITH_SOCIAL, {'q': '{http}'});
+  Uri uriLoginCheckEmail = Uri.https(
+      AppConstants.BASE_URL, AppConstants.CHECK_EMAIL_URI, {'q': '{http}'});
 
   Future<List<Language>> fetchLanguages() async {
     print(uriLanguages);
     final response = await get(
       uriLanguages,
       headers: {
-        'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+        'Authorization': 'Bearer 4|HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
         'Content-Type': 'application/json'
       },
     );
@@ -90,4 +92,33 @@ class ApiService extends GetConnect {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('auth_token');
   }
+
+
+  Future<bool> checkEmailExists(String email) async {
+    try {
+      final response = await post(
+        uriLoginCheckEmail,
+        body: jsonEncode({'email': email}),
+        headers: {
+          'Authorization': 'Bearer 4|HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final dynamic responseData = jsonDecode(response.body);
+        print('===========================>responsesData:    $responseData');
+
+        return responseData['status'] == "success";
+      }  else {
+        return false;
+      }
+    } catch (e) {
+      print('Error al verificar el correo electrónico: $e');
+      throw e;
+    }
+  }
 }
+
+
+
