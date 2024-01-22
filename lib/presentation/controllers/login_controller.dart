@@ -50,10 +50,10 @@ class LoginController extends GetMaterialController {
     showPasswordInput.value = value;
   }
 
-  void loginCheck() async {
+ Future<void> loginCheck() async {
     String email = emailController.text.trim();
 
-    if (isValidEmailCheck(email)) {
+    if (isValidEmailCheck(email))  {
       bool emailExists = await checkEmailExists(email);
       print('====================>emailExists: $emailExists');
       if (emailExists) {
@@ -64,7 +64,7 @@ class LoginController extends GetMaterialController {
           'El correo electrónico no está registrado en el servidor',
         );
       }
-    }
+    };
   }
 
 

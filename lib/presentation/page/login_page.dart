@@ -21,6 +21,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginController con = Get.put(LoginController());
 
+
+  Future<void> _continueButtonPressed() async {
+    bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
+    setState(() {
+      con.loginCheck();
+    });
+    if (emailExists) {
+      con.setShowPasswordInput(true);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,15 +75,16 @@ class _LoginPageState extends State<LoginPage> {
                         : Column(
                           children: [
                             CustomButtonWidget(
-                                onPressed: () async {
-                                  bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
-                                  setState(() {
-                                    con.loginCheck();
-                                  });
-                                  if (emailExists) {
-                                    con.setShowPasswordInput(true);
-                                  }
-                                },
+                                onPressed: _continueButtonPressed,
+                               //    () async {
+                               //  bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
+                               //  setState(() {
+                               //    con.loginCheck();
+                               //  });
+                               //  if (emailExists) {
+                               //    con.setShowPasswordInput(true);
+                               //  }
+                               //},
                                 emailController: con.emailController,
                                 isLoading: con.showPasswordInput,
                                 name: 'Continue',
