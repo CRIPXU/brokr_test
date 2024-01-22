@@ -13,7 +13,7 @@ class LoginController extends GetMaterialController {
   final GlobalController globalController = Get.find();
   final ApiService _apiService = ApiService();
   RxList<Language> languages = <Language>[].obs;
-  RxBool showPasswordInput = RxBool(false);
+  RxBool showBottonLogin = RxBool(false);
   RxBool showLoginInput = RxBool(false);
   RxBool isValidEmail = RxBool(false);
   RxBool isLoading = RxBool(false);
@@ -46,8 +46,8 @@ class LoginController extends GetMaterialController {
     }
   }
 
-  void setShowPasswordInput(bool value) {
-    showPasswordInput.value = value;
+  void setShowButtonLogin(bool value) {
+    showBottonLogin.value = value;
   }
 
  Future<void> loginCheck() async {
@@ -57,7 +57,7 @@ class LoginController extends GetMaterialController {
       bool emailExists = await checkEmailExists(email);
       print('====================>emailExists: $emailExists');
       if (emailExists) {
-        setShowPasswordInput(true);
+        setShowButtonLogin(true);
       } else {
         Get.snackbar(
           'Correo no registrado',

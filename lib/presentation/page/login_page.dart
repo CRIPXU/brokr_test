@@ -20,6 +20,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   LoginController con = Get.put(LoginController());
+  bool showPassword = false;
 
 
   Future<void> _continueButtonPressed() async {
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
       con.loginCheck();
     });
     if (emailExists) {
-      con.setShowPasswordInput(true);
+      con.setShowButtonLogin(true);
     }
   }
 
@@ -59,41 +60,39 @@ class _LoginPageState extends State<LoginPage> {
                     labelText: 'Email',
                   ),
                   const SizedBox(height: Dimensions.MARGIN_SIZE_DEFAULT),
-                  if (con.showPasswordInput.value == true)
+                  if (con.showBottonLogin.value == true)
                     InputIconWidget(
                       hintText: '********',
                       controller: con.passwordController,
-                      obscureText: true,
+                      obscureText: !showPassword,
                       keyboardType: TextInputType.visiblePassword,
                       labelText: 'Password',
-                      icon: const Icon(Icons.remove_red_eye_outlined,
-                          color: Color(0xFF5A6684)),
+                      icon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            showPassword = !showPassword;
+                          });
+                        },
+                        child: const Icon(Icons.remove_red_eye_outlined,
+                            color: Color(0xFF5A6684)),
+                      ),
                     ),
                   Obx(
-                    () => con.showPasswordInput.value
+                    () => con.showBottonLogin.value
                         ? const SizedBox()
                         : Column(
                           children: [
                             CustomButtonWidget(
                                 onPressed: _continueButtonPressed,
-                               //    () async {
-                               //  bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
-                               //  setState(() {
-                               //    con.loginCheck();
-                               //  });
-                               //  if (emailExists) {
-                               //    con.setShowPasswordInput(true);
-                               //  }
-                               //},
                                 emailController: con.emailController,
-                                isLoading: con.showPasswordInput,
+                                isLoading: con.showBottonLogin,
                                 name: 'Continue',
                               ),
                             const SizedBox(height: Dimensions.MARGIN_SIZE_BIG_LARGE),
                           ],
                         ),
                   ),
-                  if (con.showPasswordInput.value == true)
+                  if (con.showBottonLogin.value == true)
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.max,
