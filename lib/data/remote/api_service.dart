@@ -2,17 +2,18 @@ import 'dart:convert';
 
 import 'package:brokr_prueba/core/model/language_model.dart';
 import 'package:brokr_prueba/core/utils/app_constans.dart';
+import 'package:get/get.dart';
 import 'package:get/get_connect/connect.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ApiService extends GetConnect {
-  Uri uriLanguages = Uri.https(
-      AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
-  Uri uriLoginUserWithSocial = Uri.https(
-      AppConstants.BASE_URL, AppConstants.LOGIN_WITH_SOCIAL, {'q': '{http}'});
-  Uri uriLoginCheckEmail = Uri.https(
-      AppConstants.BASE_URL, AppConstants.CHECK_EMAIL_URI, {'q': '{http}'});
+  Uri uriLanguages = Uri.https(AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
+  Uri uriLogin = Uri.https(AppConstants.BASE_URL, AppConstants.LOGIN_URI, {'q': '{http}'});
+  //Uri uriLogin = Uri.parse('https://staging.brokr.com/api/api/auth/login');
+  Uri uriLoginCheckEmail = Uri.https(AppConstants.BASE_URL, AppConstants.CHECK_EMAIL_URI, {'q': '{http}'});
+  String? _authToken;
 
   Future<List<Language>> fetchLanguages() async {
     print(uriLanguages);
@@ -37,7 +38,7 @@ class ApiService extends GetConnect {
     }
   }
 
-  Future<void> login({
+  Future<String> login({
     required String email,
     required String password,
     required String os,
@@ -46,7 +47,7 @@ class ApiService extends GetConnect {
     required String language,
   }) async {
     try {
-      final Map<String, dynamic> requestData = {
+      final Map<String, String> requestData = {
         'email': email,
         'password': password,
         'os': os,
@@ -56,41 +57,58 @@ class ApiService extends GetConnect {
       };
 
       final response = await post(
-        uriLoginUserWithSocial,
+        uriLogin,
         body: requestData,
         headers: {
-          'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
-          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 4|HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+          //'Content-Type': 'application/json',
         },
       );
-
+      print('=======================>uriLogin:   $uriLogin');
       if (response.statusCode == 200) {
         final dynamic responseData = jsonDecode(response.body)['data'];
-
         final Map<String, dynamic> userData = responseData['customer'];
         final String token = responseData['token'];
-
-        await saveToken(token);
-
         print('Login successful: $userData');
         print('Token: $token');
-      } else {
-        throw Exception('Failed to login: ${response.statusCode}');
+        await saveToken(token);
+        return 'success';
+      } else if (response.statusCode == 422) {
+        // Error de validación del lado del servidor
+        Map<String, dynamic> errorData = jsonDecode(response.body);
+        String errorMessage = errorData['message'] ?? 'Error de validación';
+        Get.snackbar('Error', errorMessage);
+        return 'error';
+      } else if(response.statusCode == 401) {
+        Get.snackbar('Error', 'Contraseña incorrecta');
+        return 'error';
+      }else{
+        Get.snackbar('Error', 'Error al iniciar sesión');
+        return 'error';
       }
     } catch (e) {
-      print('Error during login: $e');
+      print('Error logging in: $e');
       rethrow;
     }
   }
 
+
+
   Future<void> saveToken(String token) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('auth_token', token);
+    _authToken = token;
   }
 
   Future<String?> getAuthToken() async {
+    if (_authToken != null) {
+      // Si el token ya está en memoria, devuélvelo directamente
+      return _authToken;
+    }
+
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString('auth_token');
+    _authToken = prefs.getString('auth_token');
+    return _authToken;
   }
 
 

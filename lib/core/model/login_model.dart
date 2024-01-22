@@ -1,4 +1,4 @@
-class LoginWithSocialRequest {
+class LoginRequest {
   final String email;
   final String password;
   final String os;
@@ -6,7 +6,7 @@ class LoginWithSocialRequest {
   final String fcmToken;
   final String languageCode;
 
-  LoginWithSocialRequest({
+  LoginRequest({
     required this.email,
     required this.password,
     required this.os,
@@ -27,14 +27,14 @@ class LoginWithSocialRequest {
   }
 }
 
-class LoginWithSocialResponse {
+class LoginResponse {
   final Map<String, dynamic> customer;
   final String token;
 
-  LoginWithSocialResponse({required this.customer, required this.token});
+  LoginResponse({required this.customer, required this.token});
 
-  factory LoginWithSocialResponse.fromJson(Map<String, dynamic> json) {
-    return LoginWithSocialResponse(
+  factory LoginResponse.fromJson(Map<String, dynamic> json) {
+    return LoginResponse(
       customer: json['customer'],
       token: json['token'],
     );

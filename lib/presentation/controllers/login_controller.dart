@@ -11,7 +11,10 @@ class LoginController extends GetMaterialController {
   final ApiService _apiService = ApiService();
   RxList<Language> languages = <Language>[].obs;
   RxBool showPasswordInput = RxBool(false);
+  RxBool showLoginInput = RxBool(false);
   RxBool isValidEmail = RxBool(false);
+  RxBool isLoading = RxBool(false);
+
 
   @override
   void onInit() {
@@ -47,7 +50,7 @@ class LoginController extends GetMaterialController {
   void loginCheck() async {
     String email = emailController.text.trim();
 
-    if (isValidForm(email)) {
+    if (isValidEmailCheck(email)) {
       bool emailExists = await checkEmailExists(email);
       print('====================>emailExists: $emailExists');
       if (emailExists) {
@@ -62,7 +65,7 @@ class LoginController extends GetMaterialController {
   }
 
 
-  bool isValidForm(String email) {
+  bool isValidEmailCheck(String email) {
     if (email.isEmpty) {
       Get.snackbar('Formulario no válido', 'El email no es válido');
      // isValidEmail.value = false;
@@ -71,41 +74,59 @@ class LoginController extends GetMaterialController {
     return true;
   }
 
-  void login() async {
+
+  Future<void> login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
     print('Email: $email');
     print('Password: $password');
 
-    if (isValidForm(email, )) {
+    if (isValidEmailPasswordCheck(email, password))   {
       try {
-        String languageCode =
-            languages.isNotEmpty ? languages.first.code : 'en';
+        String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
 
-        // Enviar la solicitud al servidor
-        await _apiService.login(
+        String response = await _apiService.login(
           email: email,
           password: password,
           os: 'android',
-          // Cambia según tu lógica
-          type: 'mobile',
-          // Cambia según tu lógica
+          type: 'guest',
           fcmToken: 'DFGKNODFIJO34U89FGKNO',
-          // Obtén el token de FCM del dispositivo
-          language: languageCode,
+          language: 'es',
         );
 
-        // Continuar con la navegación a la siguiente página
-        Get.toNamed(
-            AppRoutes.HOME); // Reemplaza '/next_page' con la ruta correcta
+        // Verificar la respuesta del servidor
+        if (response == 'success') {
+          // Inicio de sesión exitoso
+          print('Token: ${_apiService.getAuthToken()}');
+         // print('Login data: ${_apiService.toString()}');
+          Get.toNamed(AppRoutes.HOME);
+        } else if (response == 'error' && response == 'Invalid credentials') {
+          // Contraseña incorrecta
+          Get.snackbar('Error', 'Contraseña incorrecta');
+        } else {
+          // Otro tipo de error
+          Get.snackbar('Error', 'Error al iniciar sesión');
+        }
       } catch (e) {
         print('Error logging in: $e');
       }
     }
   }
- //     isValidEmail.value = false;
 
+
+
+  bool isValidEmailPasswordCheck(String email, String password) {
+    if (email.isEmpty && password.isEmpty) {
+      Get.snackbar('Formulario no válido', 'El Password no es válido');
+      return false;
+    }
+    return true;
+  }
+
+  void setShowLoginInput(bool value) {
+    showLoginInput.value = value;
+  }
 }
 
 
