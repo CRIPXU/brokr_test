@@ -1,20 +1,24 @@
 import 'dart:convert';
 
 import 'package:brokr_prueba/core/model/language_model.dart';
+import 'package:brokr_prueba/core/utils/app_constans.dart';
 import 'package:get/get_connect/connect.dart';
 import 'package:http/http.dart';
 
 class ApiService extends GetConnect {
-  Uri uri = Uri.https('staging.brokr.com','/api/api/languages',{'q': '{http}'});
+  Uri uriLanguages =
+      Uri.https(AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
+  Uri uriLoginUserWithSocial = Uri.https(
+      AppConstants.BASE_URL, AppConstants.LOGIN_WITH_SOCIAL, {'q': '{http}'});
 
   Future<List<Language>> fetchLanguages() async {
-    print(uri);
+    print(uriLanguages);
     final response = await get(
-        uri,
-        headers: {
-          'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
-          'Content-Type': 'application/json'
-        },
+      uriLanguages,
+      headers: {
+        'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+        'Content-Type': 'application/json'
+      },
     );
 
     if (response.statusCode == 200) {
@@ -30,5 +34,42 @@ class ApiService extends GetConnect {
     }
   }
 
-  loginUser({required String email, required String password, required String os, required String type, required String fcmToken, required String languageCode}) {}
+  Future<void> loginWithSocial({
+    required String email,
+    required String password,
+    required String os,
+    required String type,
+    required String fcmToken,
+    required String language,
+  }) async {
+    final Map<String, dynamic> requestData = {
+      'email': email,
+      'password': password,
+      'os': os,
+      'type': type,
+      'fcm_token': fcmToken,
+      'language': language,
+    };
+
+    final response = await post(
+      uriLoginUserWithSocial,
+      body: requestData,
+      headers: {
+        'Authorization': 'Bearer HpKlxwsfUCcvcJnCGql5nWM7WdkrJwZTn98IDgN8',
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final dynamic responseData = jsonDecode(response.body)['data'];
+
+      final Map<String, dynamic> userData = responseData['customer'];
+      final String token = responseData['token'];
+
+      print('Login successful: $userData');
+      print('Token: $token');
+    }  else{
+      throw Exception('Failed to login user');
+    }
+  }
 }

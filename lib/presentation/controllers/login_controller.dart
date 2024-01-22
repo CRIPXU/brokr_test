@@ -1,5 +1,6 @@
 import 'package:brokr_prueba/core/model/language_model.dart';
 import 'package:brokr_prueba/data/remote/api_service.dart';
+import 'package:brokr_prueba/presentation/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -53,7 +54,6 @@ class LoginController extends GetMaterialController {
 
     if (isValidForm(email, password)) {
       try {
-        // Obtener el código de idioma del primer idioma disponible
         String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
 
         // Enviar la solicitud al servidor
@@ -67,7 +67,7 @@ class LoginController extends GetMaterialController {
         );
 
         // Continuar con la navegación a la siguiente página
-        Get.toNamed('/next_page'); // Reemplaza '/next_page' con la ruta correcta
+        Get.toNamed(AppRoutes.HOME); // Reemplaza '/next_page' con la ruta correcta
       } catch (e) {
         print('Error logging in: $e');
       }
