@@ -44,7 +44,7 @@ class LoginController extends GetMaterialController {
     showPasswordInput.value = value;
   }
 
-  void login() async {
+  void loginCheck() async {
     String email = emailController.text.trim();
 
     if (isValidForm(email)) {
@@ -71,7 +71,7 @@ class LoginController extends GetMaterialController {
     return true;
   }
 
-  void loginWithSocial() async {
+  void login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -84,7 +84,7 @@ class LoginController extends GetMaterialController {
             languages.isNotEmpty ? languages.first.code : 'en';
 
         // Enviar la solicitud al servidor
-        await _apiService.loginWithSocial(
+        await _apiService.login(
           email: email,
           password: password,
           os: 'android',

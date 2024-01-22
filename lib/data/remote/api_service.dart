@@ -37,7 +37,7 @@ class ApiService extends GetConnect {
     }
   }
 
-  Future<void> loginWithSocial({
+  Future<void> login({
     required String email,
     required String password,
     required String os,

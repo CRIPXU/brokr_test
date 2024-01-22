@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                                 onPressed: () async {
                                   bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
                                   setState(() {
-                                    con.login();
+                                    con.loginCheck();
                                   });
                                   if (emailExists) {
                                     con.setShowPasswordInput(true);
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         Text('Forgot password?', style: robotoRegular, textAlign: TextAlign.end),
                         CustomButtonWidget(
                           onPressed: () {
-                            con.loginWithSocial();
+                            con.login();
                           },
                           emailController: con.emailController,
                           isLoading: RxBool(false),
