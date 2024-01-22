@@ -82,65 +82,6 @@ class CustomCircleAvatar extends StatelessWidget {
               ],
             ),
           ),
-
-          //   CircleAvatar(
-          //     radius: 25,
-          //    // backgroundColor: Colors.black,
-          //     child: Row(
-          //       children: [
-          //         if (imageUrl != null)
-          //           CircleAvatar(
-          //             radius: 25,
-          //             backgroundImage: NetworkImage(imageUrl!),
-          //           )
-          //         else
-          //           const CircleAvatar(
-          //             radius: 25,
-          //             backgroundColor: Colors.grey,
-          //             child: Icon(
-          //               Icons.person,
-          //               size: 20,
-          //               color: Colors.white,
-          //             ),
-          //           ),
-          //         const SizedBox(width: 13),
-          //         Column(
-          //           crossAxisAlignment: CrossAxisAlignment.start,
-          //           children: <Widget>[
-          //             Row(
-          //               children: <Widget>[
-          //                 Text(
-          //                   'Hi${userName != null ? ', $userName!' : ''}',
-          //                   style: GoogleFonts.inter(
-          //                     fontSize: 18,
-          //                     fontWeight: FontWeight.w400,
-          //                     color: const Color(0xFF505050),
-          //                   ),
-          //                 ),
-          //                 const SizedBox(width: 5),
-          //                 Text(
-          //                   salutation,
-          //                   style: GoogleFonts.inter(
-          //                     fontSize: 18,
-          //                     fontWeight: FontWeight.w700,
-          //                     color: const Color(0xFF505050),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //             Text(
-          //               'Good Morning!',
-          //               style: GoogleFonts.inter(
-          //                 fontSize: 15,
-          //                 fontWeight: FontWeight.w400,
-          //                 color: const Color(0xFF505050),
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       ],
-          //     ),
-          //   ),
         ],
       ),
     );
