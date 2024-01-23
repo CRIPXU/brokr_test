@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:brokr_prueba/presentation/controllers/connectivity_controller.dart';
 import 'package:brokr_prueba/presentation/controllers/global_controller.dart';
 import 'package:brokr_prueba/presentation/page/no_internet_page.dart';

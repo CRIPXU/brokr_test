@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.brokr_prueba">
+    package="com.brokr_prueba">
+
    <application
         android:label="brokr_prueba"
         android:name="${applicationName}"
