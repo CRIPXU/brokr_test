@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                             con.login();
                           },
                           emailController: con.emailController,
-                          isLoading: RxBool(false),
+                          isLoading: con.isLoading,
                           name: 'Login',
                         ),
                         const SizedBox(height: Dimensions.MARGIN_SIZE_EXTRA_LARGE),

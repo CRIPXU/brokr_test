@@ -90,12 +90,16 @@ class LoginController extends GetMaterialController {
     print('Email: $email');
     print('Password: $password');
 
-    // Mostrar la pantalla de carga
-    globalController.isLoading.value = true;
+    try {
+      // Mostrar la pantalla de carga
+      globalController.isLoading.value = true;
+      // Activar el estado de carga
+      setIsLoading(true);
 
-    if (isValidEmailPasswordCheck(email, password))   {
-      try {
-        String languageCode = languages.isNotEmpty ? languages.first.code : 'en';
+      if (isValidEmailPasswordCheck(email, password)) {
+        String languageCode = languages.isNotEmpty
+            ? languages.first.code
+            : 'en';
 
         String response = await _apiService.login(
           email: email,
@@ -105,7 +109,6 @@ class LoginController extends GetMaterialController {
           fcmToken: 'DFGKNODFIJO34U89FGKNO',
           language: languageCode,
         );
-
 
         // Verificar la respuesta del servidor
         if (response == 'success') {
@@ -119,14 +122,17 @@ class LoginController extends GetMaterialController {
           // Otro tipo de error
           Get.snackbar('Error', 'Contraseña incorrecta');
         }
-      } catch (e) {
-        print('Error logging in: $e');
-      } finally {
-        // Ocultar la pantalla de carga
-        globalController.isLoading.value = false;
       }
+    }catch (e) {
+      print('Error logging in: $e');
+    } finally {
+      // Activar el estado de carga
+      setIsLoading(false);
+      // Mostrar la pantalla de carga
+      globalController.isLoading.value = false;
     }
   }
+
 
 
   bool isValidEmailPasswordCheck(String email, String password) {
