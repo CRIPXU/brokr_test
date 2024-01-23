@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:brokr_prueba/core/utils/dimensions.dart';
 import 'package:brokr_prueba/presentation/controllers/login_controller.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
@@ -22,16 +24,6 @@ class _LoginPageState extends State<LoginPage> {
   LoginController con = Get.put(LoginController());
   bool showPassword = false;
 
-
-  Future<void> _continueButtonPressed() async {
-    bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
-    setState(() {
-      con.loginCheck();
-    });
-    if (emailExists) {
-      con.setShowButtonLogin(true);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,9 +75,18 @@ class _LoginPageState extends State<LoginPage> {
                         : Column(
                           children: [
                             CustomButtonWidget(
-                                onPressed: _continueButtonPressed,
+                                onPressed:
+                                    () async {
+                                  bool emailExists = await con.checkEmailExists(con.emailController.text.trim());
+                                  setState(() {
+                                    con.loginCheck();
+                                  });
+                                  if (emailExists) {
+                                    con.setShowButtonLogin(true);
+                                  }
+                                },
                                 emailController: con.emailController,
-                                isLoading: con.showBottonLogin,
+                                isLoading: con.isLoading,
                                 name: 'Continue',
                               ),
                             const SizedBox(height: Dimensions.MARGIN_SIZE_BIG_LARGE),

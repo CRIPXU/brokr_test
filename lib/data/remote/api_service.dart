@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:brokr_prueba/core/model/language_model.dart';
@@ -11,11 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiService extends GetConnect {
   Uri uriLanguages = Uri.https(AppConstants.BASE_URL, AppConstants.LANGUAGE, {'q': '{http}'});
   Uri uriLogin = Uri.https(AppConstants.BASE_URL, AppConstants.LOGIN_URI, {'q': '{http}'});
-  //Uri uriLogin = Uri.parse('https://staging.brokr.com/api/api/auth/login');
   Uri uriLoginCheckEmail = Uri.https(AppConstants.BASE_URL, AppConstants.CHECK_EMAIL_URI, {'q': '{http}'});
   String? _authToken;
 
-  Future<List<Language>> fetchLanguages() async {
+  FutureOr<List<Language>> fetchLanguages() async {
     print(uriLanguages);
     final response = await get(
       uriLanguages,
@@ -38,7 +38,7 @@ class ApiService extends GetConnect {
     }
   }
 
-  Future<String> login({
+  FutureOr<String> login({
     required String email,
     required String password,
     required String os,
@@ -80,7 +80,7 @@ class ApiService extends GetConnect {
         Get.snackbar('Error', errorMessage);
         return 'error';
       } else if(response.statusCode == 401) {
-        Get.snackbar('Error', 'Contraseña incorrecta');
+       // Get.snackbar('Error', 'Contraseña incorrecta');
         return 'error';
       }else{
         Get.snackbar('Error', 'Error al iniciar sesión');
@@ -94,13 +94,13 @@ class ApiService extends GetConnect {
 
 
 
-  Future<void> saveToken(String token) async {
+  FutureOr<void> saveToken(String token) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('auth_token', token);
     _authToken = token;
   }
 
-  Future<String?> getAuthToken() async {
+  FutureOr<String?> getAuthToken() async {
     if (_authToken != null) {
       // Si el token ya está en memoria, devuélvelo directamente
       return _authToken;
@@ -112,7 +112,7 @@ class ApiService extends GetConnect {
   }
 
 
-  Future<bool> checkEmailExists(String email) async {
+  FutureOr<bool> checkEmailExists(String email) async {
     try {
       final response = await post(
         uriLoginCheckEmail,

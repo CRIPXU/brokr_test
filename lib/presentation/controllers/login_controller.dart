@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:brokr_prueba/core/model/language_model.dart';
 import 'package:brokr_prueba/data/remote/api_service.dart';
 import 'package:brokr_prueba/presentation/routes/app_routes.dart';
@@ -27,7 +29,7 @@ class LoginController extends GetMaterialController {
     fetchLanguages(deviceLanguage);
   }
 
-  Future<void> fetchLanguages(String deviceLanguage) async {
+  FutureOr<void> fetchLanguages(String deviceLanguage) async {
     try {
       final List<Language> languageList = await _apiService.fetchLanguages();
       languages.assignAll(languageList);
@@ -37,7 +39,7 @@ class LoginController extends GetMaterialController {
     }
   }
 
-  Future<bool> checkEmailExists(String email) async {
+  FutureOr<bool> checkEmailExists(String email) async {
     try {
       return await _apiService.checkEmailExists(email);
     } catch (e) {
@@ -50,34 +52,38 @@ class LoginController extends GetMaterialController {
     showBottonLogin.value = value;
   }
 
- Future<void> loginCheck() async {
+  void setIsLoading(bool value) {
+    isLoading.value = value;
+  }
+
+ FutureOr<void> loginCheck() async {
     String email = emailController.text.trim();
 
-    if (isValidEmailCheck(email))  {
+    try {
+      // Activar el estado de carga
+      setIsLoading(true);
       bool emailExists = await checkEmailExists(email);
       print('====================>emailExists: $emailExists');
+
       if (emailExists) {
-        setShowButtonLogin(true);
-      } else {
-        Get.snackbar(
-          'Correo no registrado',
-          'El correo electrónico no está registrado en el servidor',
-        );
-      }
-    };
-  }
-
-
-  bool isValidEmailCheck(String email) {
-    if (email.isEmpty) {
-      Get.snackbar('Formulario no válido', 'El email no es válido');
-      return false;
+          setShowButtonLogin(true);
+        } else {
+          Get.snackbar(
+            'Correo no registrado',
+            'El correo electrónico no está registrado en el servidor',
+          );
+        }
+      } catch (e){
+      print('Error during email check: $e');
+    } finally {
+      // Desactivar el estado de carga, independientemente del resultado
+      isLoading.value = false;
+      print('===============.isLoading: $isLoading');
+      };
     }
-    return true;
-  }
 
 
-  Future<void> login() async {
+  FutureOr<void> login() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
 
@@ -97,8 +103,9 @@ class LoginController extends GetMaterialController {
           os: 'android',
           type: 'guest',
           fcmToken: 'DFGKNODFIJO34U89FGKNO',
-          language: 'es',
+          language: languageCode,
         );
+
 
         // Verificar la respuesta del servidor
         if (response == 'success') {
@@ -110,7 +117,7 @@ class LoginController extends GetMaterialController {
           Get.snackbar('Error', 'Contraseña incorrecta');
         } else {
           // Otro tipo de error
-          Get.snackbar('Error', 'Error al iniciar sesión');
+          Get.snackbar('Error', 'Contraseña incorrecta');
         }
       } catch (e) {
         print('Error logging in: $e');

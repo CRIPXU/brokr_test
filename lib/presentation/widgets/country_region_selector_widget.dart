@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:typed_data';
 
@@ -90,8 +91,8 @@ class _CountryRegionSelectorWidgetState extends State<CountryRegionSelectorWidge
               ? Container(
                   width: 30,
                   height: 30,
-                  child: FutureBuilder<Uint8List?>(
-                    future: _loadImage(),
+                  child: FutureBuilder<Uint8List>(
+                    future: loadImage(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                         return Image.memory(snapshot.data!);
@@ -122,7 +123,7 @@ class _CountryRegionSelectorWidgetState extends State<CountryRegionSelectorWidge
     );
   }
 
-  Future<Uint8List?> _loadImage() async {
+  Future<Uint8List>? loadImage() async {
     try {
       // Desactivar la verificación de certificados
       var client = http.Client();
@@ -134,10 +135,10 @@ class _CountryRegionSelectorWidgetState extends State<CountryRegionSelectorWidge
       if (response.statusCode == 200) {
         return await response.stream.toBytes();
       } else {
-        return null;
+        return null!;
       }
     } catch (e) {
-      return null;
+      return null!;
     }
   }
 }

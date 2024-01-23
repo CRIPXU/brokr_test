@@ -15,7 +15,7 @@ class ConnectivityController extends GetxController {
     });
   }
 
-  Future<bool> checkInternetConnection() async {
+  FutureOr<bool> checkInternetConnection() async {
     var connectivityResult = await (Connectivity().checkConnectivity());
     return connectivityResult != ConnectivityResult.none;
   }

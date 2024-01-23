@@ -2,6 +2,7 @@ class AppConstants {
   static const String APP_NAME = "brokr_prueba";
   static const String APP_VERSION = '1.0.0+1';
   static const String BASE_URL = 'staging.brokr.com';
+  //static const String BASE_URL = 'https://staging.brokr.com';
 
   static const String LANGUAGE = '/api/api/languages';
   static const String LOGIN_WITH_SOCIAL = '/api/api/auth/login_with_social';

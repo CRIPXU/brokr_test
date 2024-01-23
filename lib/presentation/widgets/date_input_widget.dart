@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as time;
 
 class DateInputWidget extends StatefulWidget {
   final TextEditingController controller;
@@ -57,12 +57,12 @@ class _DateInputWidgetState extends State<DateInputWidget> {
   }
 
   void _showDatePicker(BuildContext context) {
-    DatePicker.showDatePicker(
+    time.DatePicker.showDatePicker(
       context,
       showTitleActions: true,
       //minTime: DateTime(2020, 5, 5, 20, 50),
       //maxTime: DateTime(2020, 6, 7, 05, 09),
-      theme: const DatePickerTheme(
+      theme: const time.DatePickerTheme(
         backgroundColor: Colors.white,
         headerColor: Colors.white,
       ),
@@ -74,7 +74,7 @@ class _DateInputWidgetState extends State<DateInputWidget> {
         });
       },
       currentTime: DateTime.now(),
-      locale: LocaleType.en,
+      locale: time.LocaleType.en,
     );
   }
 }
